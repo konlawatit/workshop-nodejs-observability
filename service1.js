@@ -6,10 +6,7 @@ const port = 3000
 const getUrlContents = (url) => {
   return new Promise((resolve, reject) => { 
     fetch(url, resolve, reject)
-    .then(res => {
-      console.log('res textt', res.text())
-      return res.text()
-    })
+    .then(res => res.text())
     .then(body => resolve(body))
   })
 }
