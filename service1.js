@@ -6,7 +6,10 @@ const port = 3000
 const getUrlContents = (url) => {
   return new Promise((resolve, reject) => { 
     fetch(url, resolve, reject)
-    .then(res => res.text())
+    .then(res => {
+      console.log('res textt', res.text())
+      return res.text()
+    })
     .then(body => resolve(body))
   })
 }
@@ -14,6 +17,7 @@ const getUrlContents = (url) => {
 app.get('/dashboard', async (req, res) => {
   //Get data from service 2 :: Movies
   const movies = await getUrlContents('http://localhost:3001/movies')
+  console.log(movies)
   res.type('json')
   res.send(JSON.stringify({ dashboard: movies }))
 })
